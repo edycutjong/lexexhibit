@@ -10,6 +10,15 @@ function createMockRequest(body: unknown) {
 }
 
 describe('app/api/scan', () => {
+  let consoleSpy: jest.SpyInstance;
+
+  beforeAll(() => {
+    consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    consoleSpy.mockRestore();
+  });
   it('should return demo trace data if the correct address is provided', async () => {
     const req = createMockRequest({ address: demoTrace.address });
     const response = await POST(req);

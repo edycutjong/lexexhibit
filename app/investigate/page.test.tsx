@@ -14,6 +14,15 @@ jest.mock('next/navigation', () => ({
 }));
 
 describe('Investigate page', () => {
+  let consoleSpy: jest.SpyInstance;
+
+  beforeAll(() => {
+    consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    consoleSpy.mockRestore();
+  });
   beforeEach(() => {
     jest.clearAllMocks();
     jest.useFakeTimers();
@@ -68,7 +77,7 @@ describe('Investigate page', () => {
 
   it('handles error gracefully during scan result fetching', async () => {
     (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    consoleSpy.mockClear();
     
     render(<InvestigatePage />);
     
@@ -77,7 +86,6 @@ describe('Investigate page', () => {
     });
     
     expect(consoleSpy).toHaveBeenCalledWith(expect.any(Error));
-    consoleSpy.mockRestore();
   });
 
   it('generates affidavit successfully and checks download link', async () => {
@@ -168,7 +176,7 @@ describe('Investigate page', () => {
     render(<InvestigatePage />);
     await waitFor(() => expect(screen.getByText('Generate Legal Affidavit')).toBeInTheDocument());
     
-    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    consoleSpy.mockClear();
     
     await act(async () => {
       fireEvent.click(screen.getByText('Generate Legal Affidavit'));
@@ -180,7 +188,6 @@ describe('Investigate page', () => {
     await act(async () => { jest.advanceTimersByTime(500); });
 
     await waitFor(() => expect(screen.getByText('Generate Legal Affidavit')).toBeInTheDocument(), { timeout: 5000 });
-    spy.mockRestore();
   });
 
   it('covers empty ledger data branch and null coalescing summary', async () => {

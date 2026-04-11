@@ -2,6 +2,15 @@ import { POST } from './route';
 import { createMockRequest } from '@/jest.setup';
 
 describe('app/api/generate-affidavit', () => {
+  let consoleSpy: jest.SpyInstance;
+
+  beforeAll(() => {
+    consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    consoleSpy.mockRestore();
+  });
   const transactions = [
     {
       hash: '0x123',
