@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "LexExhibit | Court-Admissible Blockchain Analytics",
     description: "Translate complex DeFi wallet histories into court-admissible legal affidavits in one click.",
-    url: "https://lexexhibit.vercel.app",
+    url: "https://lexexhibit.edycu.dev",
     siteName: "LexExhibit",
     images: [
       {
@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  themeColor: "#f59e0b",
 };
 
 import Link from "next/link";

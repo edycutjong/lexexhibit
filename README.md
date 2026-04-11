@@ -22,6 +22,15 @@ LexExhibit is a 1-click forensic translation engine. It converts any Ethereum wa
 
 ---
 
+## 📹 Demo
+[Live Demo](https://lexexhibit.edycu.dev) | [Video Link](https://youtu.be/5pa6PQnUoPw)
+
+[![LexExhibit Demo Video](docs/screenshots/LexExhibit_YouTube_Thumbnail_16_9.png)](https://youtu.be/5pa6PQnUoPw)
+
+*Click the image above to watch the 35-second forensic walkthrough.*
+
+---
+
 ## 🎯 Problem
 
 When a divorce attorney suspects a spouse is hiding assets in DeFi liquidity pools, or a bankruptcy trustee needs to trace crypto dispersals, they face an impossible gap:
@@ -55,32 +64,7 @@ When a divorce attorney suspects a spouse is hiding assets in DeFi liquidity poo
 
 ## 🏗️ Architecture
 
-```
-┌──────────────────────────────────────────────────────────┐
-│                   Next.js 16 App Router                   │
-├──────────────────┬───────────────────────────────────────┤
-│  Landing Page    │  Hero + wallet address input          │
-│                  │  "Etherscan isn't admissible" hook    │
-├──────────────────┼───────────────────────────────────────┤
-│  Investigation   │  Transaction timeline with flags      │
-│  Page            │  Fund-flow diagram (Sankey-style)     │
-│                  │  "Generate Affidavit" CTA             │
-├──────────────────┼───────────────────────────────────────┤
-│  API Routes      │  /api/scan — Alchemy trace pipeline   │
-│                  │  /api/generate-affidavit — AI + PDF   │
-├──────────────────┼───────────────────────────────────────┤
-│  AI Layer        │  OpenAI GPT-4o (Structured Output)    │
-│                  │  Constrained legal prose generation    │
-├──────────────────┼───────────────────────────────────────┤
-│  PDF Engine      │  jsPDF — Court-standard formatting    │
-│                  │  Numbered lines, case captions         │
-│                  │  Perjury declaration                   │
-├──────────────────┼───────────────────────────────────────┤
-│  Data Layer      │  Alchemy SDK (full Ethereum traces)   │
-│                  │  Supabase (report cache + storage)    │
-│                  │  Pre-cached demo data (Ronin exploit) │
-└──────────────────┴───────────────────────────────────────┘
-```
+![Architecture](docs/architecture.png)
 
 ---
 
@@ -191,15 +175,6 @@ lexexhibit/
 **Competition:** [BLI Legal Tech Hackathon 2](https://dorahacks.io/hackathon/1904)  
 **Track:** Compliance Innovation & Top Law Firm Bounties  
 **Core Thesis:** The "last mile" in legal tech is format translation. Raw blockchain data tools exist (Etherscan, Arkham, Chainalysis). What's missing is turning data into documents that lawyers can actually file in court. LexExhibit closes that gap in 15 seconds.
-
----
-
-## 📹 Demo
-[Live Demo](https://lexexhibit.vercel.app) | [Video Link](https://youtu.be/5pa6PQnUoPw)
-
-[![LexExhibit Demo Video](docs/screenshots/LexExhibit_YouTube_Thumbnail_16_9.png)](https://youtu.be/5pa6PQnUoPw)
-
-*Click the image above to watch the 35-second forensic walkthrough.*
 
 ---
 
