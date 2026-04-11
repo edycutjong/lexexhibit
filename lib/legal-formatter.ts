@@ -38,6 +38,8 @@ export function formatLegalProse(
   if (method === 'swapExactTokensForTokens') actionStr = 'swapped';
   else if (method === 'bridgeTokens') actionStr = 'bridged';
   else if (method === 'deposit') actionStr = 'deposited';
+  else if (method === 'transfer') actionStr = 'transferred';
+  else actionStr = 'engaged in an asset movement';
 
   return `${dateStr}, ${fromStr} ${actionStr} approximately ${valStr} to ${toStr} via a decentralized smart contract. This transaction is authenticated on the public ledger (See Exhibit ${exhibitNumber}).`;
 }

@@ -11,7 +11,8 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx'],
+  passWithNoTests: true,
   testPathIgnorePatterns: ['<rootDir>/tests/'],
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',

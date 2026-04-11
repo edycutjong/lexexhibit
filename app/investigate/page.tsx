@@ -9,7 +9,7 @@ import { FundFlowDiagram } from '@/components/FundFlowDiagram';
 import { Transaction } from '@/lib/tx-classifier';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function InvestigateDashboard() {
+export function InvestigateDashboard() {
   const searchParams = useSearchParams();
   const rawWallet = searchParams?.get('wallet');
   const wallet = rawWallet || '0x098B716B8Aaf21512996dC57EB0615e2383E2f96';
@@ -137,7 +137,7 @@ function InvestigateDashboard() {
                     Total Suspect Value
                  </p>
                  <p className="text-3xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]">
-                   ${data?.summary?.totalValueUsd.toLocaleString() ?? 'Unknown'}
+                   {data?.summary?.totalValueUsd != null ? `$${data.summary.totalValueUsd.toLocaleString()}` : '$Unknown'}
                  </p>
               </div>
               <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
@@ -220,9 +220,8 @@ function InvestigateDashboard() {
                           </span>
                       </div>
                       <div className="flex items-center gap-4">
-                          {pdfState === 'formatting' ? <Loader2 className="w-4 h-4 animate-spin text-amber-500" /> : 
-                          (pdfState === 'tracing' || pdfState === 'translating') ? <div className="w-4" /> : <CheckCircle2 className="w-4 h-4 text-emerald-500" />}
-                          <span className={pdfState === 'formatting' ? "text-amber-400 font-bold" : (pdfState === 'tracing' || pdfState === 'translating') ? 'text-zinc-600' : "text-zinc-400"}>
+                          {pdfState === 'formatting' ? <Loader2 className="w-4 h-4 animate-spin text-amber-500" /> : <div className="w-4" />}
+                          <span className={pdfState === 'formatting' ? "text-amber-400 font-bold" : "text-zinc-600"}>
                             [3/3] Emitting Certified PDF Affidavit...
                           </span>
                       </div>
