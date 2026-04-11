@@ -195,10 +195,23 @@ lexexhibit/
 ---
 
 ## 📹 Demo
+[Live Demo](https://lexexhibit.vercel.app) | [Video Link](https://youtu.be/5pa6PQnUoPw)
 
-> 🎥 [Watch Demo Video](#) | 🌐 [Live Demo](#)
+[![LexExhibit Demo Video](docs/screenshots/LexExhibit_YouTube_Thumbnail_16_9.png)](https://youtu.be/5pa6PQnUoPw)
+
+*Click the image above to watch the 35-second forensic walkthrough.*
 
 ---
+
+## 📸 Screenshots
+
+| 🎨 Asset Trajectory Topology | 📂 Case Documentation View |
+|:---:|:---:|
+| ![Topology](docs/screenshots/04-Asset-Trajectory-Topology.png) | ![Case Documentation](docs/screenshots/03-Case-Documentation.png) |
+
+| ✍️ Affidavit Generation | 📄 Court-Ready PDF Preview |
+|:---:|:---:|
+| ![Affidavit](docs/screenshots/02-Forensic-Dashboard.png) | ![PDF Preview](docs/screenshots/05-PDF-Affidavit-Preview.png) |
 
 ## 📄 License
 
