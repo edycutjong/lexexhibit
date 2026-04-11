@@ -38,7 +38,7 @@ async function runScreenshots() {
   await page.waitForSelector('text="Regenerate Legal Affidavit"', { timeout: 15000 });
   await page.waitForSelector('iframe');
   await page.waitForTimeout(2000);
-  await page.screenshot({ path: path.join(OUT_DIR, '03-Affidavit-Preview.png') });
+  await page.screenshot({ path: path.join(OUT_DIR, '03-Affidavit-Preview.png'), fullPage: true });
 
   console.log(`✅ All screenshots saved successfully to the "${OUT_DIR}" directory!`);
 
