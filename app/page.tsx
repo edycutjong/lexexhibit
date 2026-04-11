@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-8 px-4 text-center relative overflow-hidden">
+    <div className="flex h-[calc(100vh-4rem)] flex-col items-center justify-center px-4 py-4 text-center relative overflow-hidden">
       <AnimatedBackground />
 
       <motion.div
