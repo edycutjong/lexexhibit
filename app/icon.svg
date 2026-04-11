@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Solid Amber Background matching LexExhibit's theme -->
+  <rect width="512" height="512" rx="112" fill="#F59E0B" />
+  
+  <!-- Outer Shield Outline -->
+  <path d="M256 100 L140 150 V260 C140 350 190 410 256 450 C322 410 372 350 372 260 V150 Z" 
+        fill="none" stroke="white" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" />
+        
+  <!-- Center Keyhole (Forensics/Security) -->
+  <circle cx="256" cy="245" r="32" fill="white" />
+  <path d="M241 270 L231 340 H281 L271 270 Z" fill="white" stroke="white" stroke-width="4" stroke-linejoin="round" />
+</svg>

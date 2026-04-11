@@ -1,3 +1,5 @@
+import { TextEncoder as TE, TextDecoder as TD } from 'util';
+
 // Mock environment variables for tests
 process.env.OPENAI_API_KEY = 'test-openai-key';
 process.env.ALCHEMY_API_KEY = 'test-alchemy-key';
@@ -61,16 +63,14 @@ if (typeof window !== 'undefined') {
 
 // Mock globals for Node environment (often stripped by Jest)
 if (typeof Request === 'undefined') {
-  // @ts-ignore
+  // @ts-expect-error: mocking global Request
   global.Request = class Request {};
 }
 if (typeof Response === 'undefined') {
-  // @ts-ignore
+  // @ts-expect-error: mocking global Response
   global.Response = class Response {};
 }
 if (typeof TextEncoder === 'undefined') {
-  const { TextEncoder, TextDecoder } = require('util');
-  global.TextEncoder = TextEncoder;
-  // @ts-ignore
-  global.TextDecoder = TextDecoder;
+  global.TextEncoder = TE as unknown as typeof TextEncoder;
+  global.TextDecoder = TD as unknown as typeof TextDecoder;
 }
