@@ -24,10 +24,10 @@ export default function RootLayout({
              <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
                 <span className="text-amber-500">Lex</span>Exhibit
              </Link>
-             <nav className="text-sm font-medium text-zinc-400 flex gap-6">
-                <a href="https://github.com/edycutjong/LexExhibit#%E2%9A%99%EF%B8%8F-how-we-built-it" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">How it works</a>
-                <a href="mailto:demo@lexexhibit.ai?subject=LexExhibit Pricing" className="hover:text-white transition-colors">Pricing</a>
-                <a href="mailto:demo@lexexhibit.ai?subject=Enterprise Law Firm Setup" className="hover:text-white transition-colors">For Law Firms</a>
+             <nav className="text-sm font-medium flex items-center gap-3">
+                <a href="https://github.com/edycutjong/LexExhibit#%E2%9A%99%EF%B8%8F-how-we-built-it" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5">How it works</a>
+                <a href="https://github.com/edycutjong/LexExhibit#-architecture" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-white/5">Architecture</a>
+                <a href="mailto:demo@lexexhibit.ai?subject=Enterprise%20Law%20Firm%20Setup" className="text-amber-400 border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 transition-all px-4 py-1.5 rounded-lg backdrop-blur-sm shadow-[0_0_12px_rgba(245,158,11,0.1)] hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]">For Law Firms →</a>
              </nav>
           </div>
         </header>
