@@ -50,7 +50,7 @@ describe('suspicious-detector', () => {
 
   it('handles missing suspiciousFlags', () => {
     const tx = { ...baseTx };
-    delete (tx as any).suspiciousFlags;
+    delete (tx as Partial<Transaction>).suspiciousFlags;
     const results = detectSuspiciousPatterns([tx]);
     expect(results[0].suspiciousFlags).toEqual([]);
   });
