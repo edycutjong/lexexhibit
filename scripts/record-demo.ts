@@ -39,7 +39,7 @@ async function runDemo() {
   
   const hasAudio = fs.existsSync(AUDIO_PATH);
   let audioProcess;
-  let startTime = Date.now();
+  const startTime = Date.now();
 
   if (hasAudio) {
     console.log('🔊 Starting audio...');

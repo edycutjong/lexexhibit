@@ -1,0 +1,51 @@
+{
+  "address": "0xInnocentUser1234567890abcdef1234567890a",
+  "summary": {
+    "totalValueUsd": 450.00,
+    "txCount": 3
+  },
+  "transactions": [
+    {
+      "hash": "0x000abc456def7890123abc456def7890123abc456def7890123abc456def7890",
+      "from": "0xInnocentUser1234567890abcdef1234567890a",
+      "to": "0x28C6c06298d514Db089934071355E5743bf21d60",
+      "value": "0.1",
+      "tokenSymbol": "ETH",
+      "tokenValue": "0.1",
+      "method": "transfer",
+      "blockNumber": 18382910,
+      "timestamp": 1710100000,
+      "isInternal": false,
+      "category": "transfer",
+      "suspiciousFlags": []
+    },
+    {
+      "hash": "0x111def7890123abc456def7890123abc456def7890123abc456def7890123abc",
+      "from": "0xInnocentUser1234567890abcdef1234567890a",
+      "to": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+      "value": "0.0",
+      "tokenSymbol": "USDC",
+      "tokenValue": "50",
+      "method": "swapExactTokensForTokens",
+      "blockNumber": 18383000,
+      "timestamp": 1710200000,
+      "isInternal": false,
+      "category": "swap",
+      "suspiciousFlags": []
+    },
+    {
+      "hash": "0x2220123abc456def7890123abc456def7890123abc456def7890123abc456def",
+      "from": "0xInnocentUser1234567890abcdef1234567890a",
+      "to": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "value": "0.0",
+      "tokenSymbol": "USDT",
+      "tokenValue": "100",
+      "method": "transfer",
+      "blockNumber": 18383100,
+      "timestamp": 1710300000,
+      "isInternal": false,
+      "category": "transfer",
+      "suspiciousFlags": []
+    }
+  ]
+}

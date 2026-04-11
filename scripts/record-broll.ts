@@ -1,5 +1,6 @@
 import { chromium, Page } from 'playwright';
 import path from 'path';
+import fs from 'fs';
 
 async function smoothMouseMove(page: Page, x: number, y: number, steps = 30) {
   await page.mouse.move(x, y, { steps });
@@ -76,8 +77,6 @@ async function runBRoll() {
   const videoPath = await page.video()?.path();
   if (videoPath) {
     const finalPath = path.resolve(import.meta.dirname, '..', 'recordings', 'LexExhibit_BRoll.webm');
-    // Ensure directory exists
-    const fs = require('fs');
     const finalDir = path.dirname(finalPath);
     if (!fs.existsSync(finalDir)) {
       fs.mkdirSync(finalDir, { recursive: true });

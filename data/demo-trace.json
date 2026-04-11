@@ -1,0 +1,65 @@
+{
+  "address": "0x098B716B8Aaf21512996dC57EB0615e2383E2f96",
+  "summary": {
+    "totalValueUsd": 2150000.00,
+    "txCount": 12
+  },
+  "transactions": [
+    {
+      "hash": "0x123abc456def7890123abc456def7890123abc456def7890123abc456def7890",
+      "from": "0x098B716B8Aaf21512996dC57EB0615e2383E2f96",
+      "to": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+      "value": "0.0",
+      "tokenSymbol": "USDC",
+      "tokenValue": "500000",
+      "method": "swapExactTokensForTokens",
+      "blockNumber": 14382910,
+      "timestamp": 1710500000,
+      "isInternal": false,
+      "category": "swap",
+      "suspiciousFlags": ["rapid_dispersal"]
+    },
+    {
+      "hash": "0x456def7890123abc456def7890123abc456def7890123abc456def7890123abc",
+      "from": "0x098B716B8Aaf21512996dC57EB0615e2383E2f96",
+      "to": "0x1111111254fb6c44bac0bed2854e76f90643097d",
+      "value": "0.0",
+      "tokenSymbol": "USDT",
+      "tokenValue": "1500000",
+      "method": "deposit",
+      "blockNumber": 14383000,
+      "timestamp": 1710600000,
+      "isInternal": false,
+      "category": "lp_deposit",
+      "suspiciousFlags": []
+    },
+    {
+      "hash": "0x7890123abc456def7890123abc456def7890123abc456def7890123abc456def",
+      "from": "0x098B716B8Aaf21512996dC57EB0615e2383E2f96",
+      "to": "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
+      "value": "100.0",
+      "tokenSymbol": "ETH",
+      "tokenValue": "100",
+      "method": "transfer",
+      "blockNumber": 14383100,
+      "timestamp": 1710700000,
+      "isInternal": false,
+      "category": "mixer_interaction",
+      "suspiciousFlags": ["mixer_interaction"]
+    },
+    {
+      "hash": "0xabc123def456abc123def456abc123def456abc123def456abc123def456abc1",
+      "from": "0x098B716B8Aaf21512996dC57EB0615e2383E2f96",
+      "to": "0x401F6c983eA34274ec46f84D70b31C15146B138e",
+      "value": "0.0",
+      "tokenSymbol": "USDC",
+      "tokenValue": "150000",
+      "method": "bridgeTokens",
+      "blockNumber": 14383500,
+      "timestamp": 1710800000,
+      "isInternal": false,
+      "category": "bridge",
+      "suspiciousFlags": ["cross_chain_hop"]
+    }
+  ]
+}
