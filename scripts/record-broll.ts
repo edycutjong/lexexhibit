@@ -40,6 +40,7 @@ async function runBRoll() {
   console.log('Loading app...');
   await page.goto('http://localhost:3000');
   await page.waitForLoadState('networkidle');
+  await page.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });
   await page.waitForTimeout(3000);
   
   await smoothMouseMove(page, 500, 300);
@@ -63,8 +64,8 @@ async function runBRoll() {
   await page.waitForTimeout(1000);
 
   console.log('Generating Affidavit...');
-  await page.click('button:has-text("Generate Affidavit")');
-  await page.waitForSelector('text="Regenerate Affidavit"', { timeout: 15000 });
+  await page.click('button:has-text("Generate Legal Affidavit")');
+  await page.waitForSelector('text="Regenerate Legal Affidavit"', { timeout: 15000 });
   await page.waitForTimeout(3000);
 
   await smoothScroll(page, 300);

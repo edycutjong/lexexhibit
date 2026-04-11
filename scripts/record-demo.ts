@@ -1,4 +1,5 @@
-import { chromium, Page } from 'playwright';
+import { chromium } from 'playwright';
+import type { Page } from 'playwright';
 import { spawn } from 'child_process';
 import path from 'path';
 import fs from 'fs';
@@ -36,6 +37,7 @@ async function runDemo() {
   console.log('Loading app at localhost:3000...');
   await page.goto('http://localhost:3000');
   await page.waitForLoadState('networkidle');
+  await page.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });
   
   const hasAudio = fs.existsSync(AUDIO_PATH);
   let audioProcess;
@@ -79,8 +81,8 @@ async function runDemo() {
   // [0:45 - 1:10] Affidavit
   await waitTo(45);
   console.log('Generating Affidavit...');
-  await page.click('button:has-text("Generate Affidavit")');
-  await page.waitForSelector('text="Regenerate Affidavit"', { timeout: 15000 });
+  await page.click('button:has-text("Generate Legal Affidavit")');
+  await page.waitForSelector('text="Regenerate Legal Affidavit"', { timeout: 15000 });
   await page.waitForSelector('iframe');
   await waitTo(60);
   await smoothScroll(page, 300);

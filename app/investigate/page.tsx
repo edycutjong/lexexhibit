@@ -130,7 +130,7 @@ export function InvestigateDashboard() {
            </div>
            
            <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
+              <div className="bg-linear-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
                  <div className="absolute -right-4 -top-4 w-20 h-20 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-colors"></div>
                  <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
                     <Banknote className="w-4 h-4 text-emerald-500" />
@@ -140,7 +140,7 @@ export function InvestigateDashboard() {
                    {data?.summary?.totalValueUsd != null ? `$${data.summary.totalValueUsd.toLocaleString()}` : '$Unknown'}
                  </p>
               </div>
-              <div className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
+              <div className="bg-linear-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
                  <div className="absolute -right-4 -top-4 w-20 h-20 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-colors"></div>
                  <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
                     <Activity className="w-4 h-4 text-amber-500" />

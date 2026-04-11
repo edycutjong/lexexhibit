@@ -22,22 +22,23 @@ async function runScreenshots() {
   console.log('Taking screenshot of Landing Page...');
   await page.goto('http://localhost:3000');
   await page.waitForLoadState('networkidle');
+  await page.addStyleTag({ content: 'nextjs-portal { display: none !important; }' });
   await page.waitForTimeout(1500); 
-  await page.screenshot({ path: path.join(OUT_DIR, '01-Landing-Page.png'), fullPage: true });
+  await page.screenshot({ path: path.join(OUT_DIR, '01-Landing-Page.png') });
 
   console.log('Taking screenshot of Forensic Dashboard...');
   await page.fill('input[type="text"]', DEMO_WALLET);
   await page.click('button[type="submit"]');
   await page.waitForSelector('text="Forensic Wallet Trace"', { timeout: 10000 });
   await page.waitForTimeout(2000); 
-  await page.screenshot({ path: path.join(OUT_DIR, '02-Forensic-Dashboard.png'), fullPage: true });
+  await page.screenshot({ path: path.join(OUT_DIR, '02-Forensic-Dashboard.png') });
 
   console.log('Taking screenshot of Affidavit Preview...');
-  await page.click('button:has-text("Generate Affidavit")');
-  await page.waitForSelector('text="Regenerate Affidavit"', { timeout: 15000 });
+  await page.click('button:has-text("Generate Legal Affidavit")');
+  await page.waitForSelector('text="Regenerate Legal Affidavit"', { timeout: 15000 });
   await page.waitForSelector('iframe');
   await page.waitForTimeout(2000);
-  await page.screenshot({ path: path.join(OUT_DIR, '03-Affidavit-Preview.png'), fullPage: true });
+  await page.screenshot({ path: path.join(OUT_DIR, '03-Affidavit-Preview.png') });
 
   console.log(`✅ All screenshots saved successfully to the "${OUT_DIR}" directory!`);
 
