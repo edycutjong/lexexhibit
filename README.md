@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="app/icon.svg" alt="LexExhibit Logo" width="120" />
+  <img src="public/icon.svg" alt="LexExhibit Logo" width="120" />
 </p>
 
 <h1 align="center">⚖️ LexExhibit</h1>

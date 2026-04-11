@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Solid Amber Background matching LexExhibit's theme -->
-  <rect width="512" height="512" rx="112" fill="#F59E0B" />
-  
-  <!-- Outer Shield Outline -->
-  <path d="M256 100 L140 150 V260 C140 350 190 410 256 450 C322 410 372 350 372 260 V150 Z" 
-        fill="none" stroke="white" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" />
-        
-  <!-- Center Keyhole (Forensics/Security) -->
-  <circle cx="256" cy="245" r="32" fill="white" />
-  <path d="M241 270 L231 340 H281 L271 270 Z" fill="white" stroke="white" stroke-width="4" stroke-linejoin="round" />
-</svg>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><rect fill="#09090b" height="512" rx="100" width="512"/><path d="m0 100h512m-512 100h512m-512 100h512m-512 100h512" fill="none" opacity=".05" stroke="#f59e0b"/><path d="m100 0v512m100-512v512m100-512v512m100-512v512" fill="none" opacity=".05" stroke="#f59e0b"/><g transform="matrix(.85 0 0 .85 38.4 38.4)"><g fill="#f59e0b"><rect height="240" rx="8" width="16" x="248" y="140"/><circle cx="256" cy="140" r="12"/><rect height="12" rx="6" width="152" x="180" y="380"/><rect height="12" rx="6" width="272" x="120" y="165"/></g><path d="m160 177-30 53m30-53 30 53" fill="none" stroke="#f59e0b" stroke-linecap="round" stroke-width="4"/><path d="m352 177-30 53m30-53 30 53" fill="none" stroke="#f59e0b" stroke-linecap="round" stroke-width="4"/><path d="m160 230 40 23v46l-40 23-40-23v-46z" fill="#f59e0b"/><path d="m352 230 40 23v46l-40 23-40-23v-46z" fill="#f59e0b"/><path d="m160 245 27 16v30l-27 16-27-16v-30z" fill="#09090b"/><path d="m352 245 27 16v30l-27 16-27-16v-30z" fill="#09090b"/><circle cx="160" cy="177" fill="#f59e0b" r="6"/><circle cx="352" cy="177" fill="#f59e0b" r="6"/></g></svg>
