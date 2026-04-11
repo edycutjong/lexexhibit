@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import InvestigatePage from './page';
+import { useSearchParams } from 'next/navigation';
 
 const mockScanData = {
   ledger: {
@@ -199,8 +200,7 @@ describe('Investigate page', () => {
     });
     
     // We can also spy on search params to return a truthy wallet at least once!
-    const useSearchParamsMock = require('next/navigation').useSearchParams;
-    useSearchParamsMock.mockReturnValueOnce({ get: () => '0xTESTWALLET' });
+    (useSearchParams as jest.Mock).mockReturnValueOnce({ get: () => '0xTESTWALLET' });
 
     render(<InvestigatePage />);
     await act(async () => { await Promise.resolve(); });
@@ -215,8 +215,7 @@ describe('Investigate page', () => {
   });
 
   it('covers missing wallet param fallback', async () => {
-    const useSearchParamsMock = require('next/navigation').useSearchParams;
-    useSearchParamsMock.mockReturnValueOnce({ get: () => null });
+    (useSearchParams as jest.Mock).mockReturnValueOnce({ get: () => null });
     
     (global.fetch as jest.Mock).mockResolvedValueOnce({ ok: true, json: () => Promise.resolve(mockScanData) });
     render(<InvestigatePage />);

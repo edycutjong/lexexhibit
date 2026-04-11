@@ -110,7 +110,7 @@ export function InvestigateDashboard() {
           className="sticky top-20 z-10 bg-zinc-950/80 backdrop-blur-xl pb-6 border-b border-white/5"
         >
            <div className="flex items-center gap-4 mb-4">
-             <div className="p-3 bg-gradient-to-br from-amber-500/20 to-amber-500/5 rounded-xl border border-amber-500/30 shadow-[0_0_20px_rgba(245,158,11,0.15)]">
+             <div className="p-3 bg-linear-to-br from-amber-500/20 to-amber-500/5 rounded-xl border border-amber-500/30 shadow-[0_0_20px_rgba(245,158,11,0.15)]">
                <ShieldCheck className="text-amber-500 w-7 h-7" />
              </div>
              <div>
