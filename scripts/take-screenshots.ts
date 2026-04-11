@@ -33,12 +33,27 @@ async function runScreenshots() {
   await page.waitForTimeout(2000); 
   await page.screenshot({ path: path.join(OUT_DIR, '02-Forensic-Dashboard.png') });
 
-  console.log('Taking screenshot of Affidavit Preview...');
+  console.log('Taking screenshot of Case Documentation...');
   await page.click('button:has-text("Generate Legal Affidavit")');
   await page.waitForSelector('text="Regenerate Legal Affidavit"', { timeout: 15000 });
-  await page.waitForSelector('iframe');
-  await page.waitForTimeout(2000);
-  await page.screenshot({ path: path.join(OUT_DIR, '03-Affidavit-Preview.png'), fullPage: true });
+  await page.waitForTimeout(1000);
+  await page.locator('h3:has-text("Case Documentation")').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: path.join(OUT_DIR, '03-Case-Documentation.png') });
+
+  console.log('Taking screenshot of Asset Trajectory Topology...');
+  await page.locator('h3:has-text("Asset Trajectory Topology")').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: path.join(OUT_DIR, '04-Asset-Trajectory-Topology.png') });
+
+  console.log('Taking screenshot of PDF Affidavit Preview...');
+  // Wait for PDF generation to complete and iframe to appear
+  await page.waitForSelector('iframe[title="Affidavit Preview"]', { timeout: 30000 });
+  await page.waitForTimeout(3000);
+  // Scroll to bottom to show the PDF preview section
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await page.waitForTimeout(1000);
+  await page.screenshot({ path: path.join(OUT_DIR, '05-PDF-Affidavit-Preview.png') });
 
   console.log(`✅ All screenshots saved successfully to the "${OUT_DIR}" directory!`);
 
