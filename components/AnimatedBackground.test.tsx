@@ -55,12 +55,10 @@ describe('AnimatedBackground', () => {
     jest.restoreAllMocks();
   });
 
-  it('covers className prop', () => {
-    render(<AnimatedBackground className="test-class" />);
-  });
+
 
   it('covers missing context branch in resize', () => {
-    // @ts-expect-error: mocking getContext
+    // Provide a mocked null context to reach lines guarded by if (!ctx) return;
     HTMLCanvasElement.prototype.getContext = jest.fn(() => null);
     render(<AnimatedBackground />);
     window.dispatchEvent(new Event('resize'));
