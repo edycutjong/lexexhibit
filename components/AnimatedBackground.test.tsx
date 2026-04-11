@@ -1,4 +1,4 @@
-import { render, cleanup, screen, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { AnimatedBackground } from './AnimatedBackground';
 import React from 'react';
 
@@ -49,7 +49,7 @@ describe('AnimatedBackground', () => {
     jest.spyOn(React, 'useRef').mockReturnValue({
       get current() { return null; },
       set current(val) {}
-    } as any);
+    } as unknown as React.MutableRefObject<HTMLCanvasElement | null>);
     
     render(<AnimatedBackground />);
     jest.restoreAllMocks();
