@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Rounded Background -->
+  <rect width="512" height="512" rx="100" fill="#4338CA"/>
+  
+  <!-- Scale Pillar -->
+  <rect x="246" y="180" width="20" height="200" fill="white" rx="4"/>
+  <rect x="200" y="380" width="112" height="15" fill="white" rx="4"/>
+  
+  <!-- Scale Crossbar -->
+  <rect x="140" y="170" width="232" height="15" fill="white" rx="4"/>
+  
+  <!-- Hanging Lines -->
+  <path d="M160 185 L140 230 M160 185 L180 230" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M352 185 L332 230 M352 185 L372 230" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Hexagonal Nodes (Blockchain) -->
+  <path d="M160 230 L195 250 L195 290 L160 310 L125 290 L125 250 Z" fill="white"/>
+  <path d="M352 230 L387 250 L387 290 L352 310 L317 290 L317 250 Z" fill="white"/>
+  
+  <!-- Node Internal Details (Stylized) -->
+  <path d="M160 240 L185 255 L185 285 L160 300 L135 285 L135 255 Z" fill="#4338CA"/>
+  <path d="M352 240 L377 255 L377 285 L352 300 L327 285 L327 255 Z" fill="#4338CA"/>
+</svg>
