@@ -23,7 +23,7 @@ describe('FundFlowDiagram', () => {
       from: '0xMixer',
       to: '0xUnknown',
       value: '5',
-      category: 'unknown' as any,
+      category: 'unknown',
       suspiciousFlags: []
     },
     {
