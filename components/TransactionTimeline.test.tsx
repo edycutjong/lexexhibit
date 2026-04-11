@@ -96,7 +96,7 @@ describe('TransactionTimeline', () => {
         ...transactions[0],
         hash: '0xZERO',
         tokenValue: undefined,
-        value: undefined,
+        value: undefined as unknown as string,
         tokenSymbol: 'USDC'
       }
     ];
