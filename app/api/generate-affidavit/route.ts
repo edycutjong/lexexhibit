@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       };
     });
 
-    const pdfBase64 = await generateAffidavitPdfBase64(sections);
+    const pdfBase64 = await generateAffidavitPdfBase64(sections, transactions as Transaction[]);
 
     return NextResponse.json({ pdfBase64, sections, exhibitCount: sections.length });
   } catch (error) {

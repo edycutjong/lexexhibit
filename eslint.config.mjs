@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "coverage/**",
+    // Asset generation scripts (gitignored):
+    "docs/assets/**",
   ]),
 ]);
 
