@@ -6,6 +6,8 @@ import { Loader2, FileText, CheckCircle2, ShieldCheck, Globe, Banknote, Activity
 import { TransactionTimeline } from '@/components/TransactionTimeline';
 import { AffidavitPreview } from '@/components/AffidavitPreview';
 import { FundFlowDiagram } from '@/components/FundFlowDiagram';
+import { ExhibitVerificationPanel } from '@/components/ExhibitVerificationPanel';
+import { LegalSection } from '@/lib/pdf-generator';
 import { Transaction } from '@/lib/tx-classifier';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -22,6 +24,7 @@ export function InvestigateDashboard() {
 
   const [pdfState, setPdfState] = useState<'idle'|'tracing'|'translating'|'formatting'|'done'>('idle');
   const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
+  const [pdfSections, setPdfSections] = useState<LegalSection[]>([]);
   
   const pdfRef = useRef<HTMLDivElement>(null);
 
@@ -74,6 +77,7 @@ export function InvestigateDashboard() {
       const json = await res.json();
       
       setPdfDataUrl(json.pdfBase64);
+      setPdfSections(json.sections || []);
       setPdfState('done');
       
       setTimeout(() => {
@@ -244,6 +248,12 @@ export function InvestigateDashboard() {
          <div ref={pdfRef} className={pdfState === 'done' ? "animate-in fade-in slide-in-from-bottom-4 duration-1000" : ""}>
            <AffidavitPreview pdfDataUrl={pdfDataUrl} />
          </div>
+
+         {pdfState === 'done' && pdfSections.length > 0 && (
+           <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+             <ExhibitVerificationPanel sections={pdfSections} />
+           </div>
+         )}
       </div>
     </div>
   );

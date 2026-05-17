@@ -20,7 +20,8 @@ export async function POST(req: Request) {
          tx.tokenValue || tx.value || '0',
          tx.tokenSymbol || 'ETH',
          tx.method || '',
-         exhibitLetter
+         exhibitLetter,
+         tx.suspiciousFlags || []
       );
       
       return {

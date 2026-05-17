@@ -61,7 +61,7 @@ When a divorce attorney suspects a spouse is hiding assets in DeFi liquidity poo
 | **AI** | OpenAI GPT-4o (Structured Output) |
 | **PDF** | jsPDF 4.2 (Court formatting) |
 | **Icons** | Lucide React |
-| **Backend** | Supabase (report storage) |
+| **Cache** | Supabase (optional caching layer — pre-cached demo data ships in `/data`) |
 | **Language** | TypeScript 5 |
 
 <div align="center">
@@ -142,15 +142,17 @@ lexexhibit/
 │   ├── page.tsx              # Landing page with wallet input
 │   └── template.tsx          # Page transition animations
 ├── components/
-│   ├── FundFlowDiagram.tsx   # Interactive Sankey-style flow viz
-│   ├── TransactionTimeline.tsx # Chronological TX list with flags
-│   └── AffidavitPreview.tsx  # PDF preview before download
-├── data/                     # Pre-cached demo transaction data
-├── docs/                     # README assets (hero, screenshots)
+│   ├── FundFlowDiagram.tsx        # Interactive Sankey-style flow viz
+│   ├── TransactionTimeline.tsx    # Chronological TX list with flags
+│   ├── AffidavitPreview.tsx       # PDF preview with download
+│   └── ExhibitVerificationPanel.tsx # Per-exhibit on-chain verification cards
+├── data/                          # Pre-cached demo transaction data
+├── docs/                          # README assets (hero, screenshots)
 ├── lib/
-│   ├── tx-classifier.ts     # Transaction categorization engine
-│   ├── legal-prompt.ts      # AI system prompt for legal prose
-│   └── pdf-renderer.ts      # Court-standard PDF formatting
+│   ├── tx-classifier.ts           # Transaction categorization engine
+│   ├── suspicious-detector.ts     # Flag detection (mixer, dispersal, bridge)
+│   ├── legal-formatter.ts         # Legal prose templates with flag language
+│   └── pdf-generator.ts           # Court-standard PDF + fund-flow diagram page
 ├── scripts/                  # Playwright demo recording scripts
 ├── .env.example              # Environment template
 ├── .github/                  # CI workflows
