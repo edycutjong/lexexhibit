@@ -84,7 +84,7 @@ export async function fetchWalletTransactions(address: string): Promise<{
   const flagged = detectSuspiciousPatterns(transactions);
 
   const totalValueUsd = flagged.reduce((acc, tx) => {
-    const val = parseFloat(tx.tokenValue ?? tx.value ?? '0');
+    const val = parseFloat(tx.tokenValue ?? tx.value);
     const isEth = !tx.tokenSymbol || tx.tokenSymbol === 'ETH';
     return acc + (isEth ? val * ETH_PRICE_USD : val);
   }, 0);

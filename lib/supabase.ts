@@ -1,13 +1,14 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 // Returns null when env vars are absent so callers can skip DB operations
+// Returns null when env vars are absent so callers can skip DB operations
 // gracefully — the demo path never depends on Supabase being configured.
-function createSupabaseClient(): SupabaseClient | null {
+export const createSupabaseClient = (): SupabaseClient | null => {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_ANON_KEY;
   if (!url || !key) return null;
   return createClient(url, key);
-}
+};
 
 export const supabase = createSupabaseClient();
 

@@ -1,5 +1,13 @@
 import { POST } from './route';
 import { createMockRequest } from '@/jest.setup';
+import { supabase } from '@/lib/supabase';
+
+jest.mock('@/lib/supabase', () => ({
+  supabase: {
+    from: jest.fn().mockReturnThis(),
+    insert: jest.fn().mockResolvedValue({ error: null }),
+  }
+}));
 
 describe('app/api/generate-affidavit', () => {
   let consoleSpy: jest.SpyInstance;
@@ -42,7 +50,7 @@ describe('app/api/generate-affidavit', () => {
   ];
 
   it('should generate affidavit data and return base64 PDF', async () => {
-    const req = createMockRequest({ transactions });
+    const req = createMockRequest({ transactions, wallet: '0XABC' });
     const response = await POST(req);
     const data = await response.json();
 
@@ -85,5 +93,16 @@ describe('app/api/generate-affidavit', () => {
     
     expect(response.status).toBe(200);
     expect(data.sections[0].legalProse).toContain('0 ETH');
+  });
+
+  it('should warn if supabase report write fails', async () => {
+    (supabase!.from('generated_reports').insert as jest.Mock).mockResolvedValueOnce({ error: { message: 'db error' } });
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const req = createMockRequest({ transactions });
+    await POST(req);
+    // Because it's fire-and-forget, we need to wait a tick for the promise to resolve
+    await new Promise(process.nextTick);
+    expect(warnSpy).toHaveBeenCalledWith('Supabase report write failed:', 'db error');
+    warnSpy.mockRestore();
   });
 });
