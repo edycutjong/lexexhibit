@@ -185,6 +185,11 @@ if (typeof TextEncoder === 'undefined') {
   global.TextDecoder = TD as unknown as typeof TextDecoder;
 }
 
+// Supabase client always returns null in tests — no real network calls
+jest.mock('@/lib/supabase', () => ({
+  supabase: null,
+}));
+
 // Mock next/server for reliable Response handling in tests
 jest.mock('next/server', () => {
   return {
