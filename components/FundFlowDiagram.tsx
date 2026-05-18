@@ -90,7 +90,10 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
                 <Banknote className="w-4 h-4 text-emerald-500" />
                 Total Suspect Value
               </p>
-              <p className="text-xl md:text-2xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)] whitespace-nowrap">
+              <p 
+                className="text-xl md:text-2xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)] truncate"
+                title={`$${Math.floor(transactions.reduce((acc, tx) => acc + parseFloat(tx.value) * 3000, 0)).toLocaleString()}`}
+              >
                 ${Math.floor(transactions.reduce((acc, tx) => acc + parseFloat(tx.value) * 3000, 0)).toLocaleString()}
               </p>
             </div>
@@ -100,7 +103,7 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
                 <Activity className="w-4 h-4 text-amber-500" />
                 Transactions Parsed
               </p>
-              <p className="text-xl md:text-2xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+              <p className="text-xl md:text-2xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)] truncate">
                 {transactions.length}
               </p>
             </div>
