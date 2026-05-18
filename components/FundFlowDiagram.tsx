@@ -90,7 +90,7 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
                 <Banknote className="w-4 h-4 text-emerald-500" />
                 Total Suspect Value
               </p>
-              <p className="text-3xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]">
+              <p className="text-xl md:text-2xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)] whitespace-nowrap">
                 ${Math.floor(transactions.reduce((acc, tx) => acc + parseFloat(tx.value) * 3000, 0)).toLocaleString()}
               </p>
             </div>
@@ -100,14 +100,14 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
                 <Activity className="w-4 h-4 text-amber-500" />
                 Transactions Parsed
               </p>
-              <p className="text-3xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+              <p className="text-xl md:text-2xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)]">
                 {transactions.length}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 overflow-visible pt-4 pb-20">
+        <div className="flex-1 overflow-x-auto pt-4 pb-20">
           <motion.div 
             variants={containerVariants}
             initial="hidden"
