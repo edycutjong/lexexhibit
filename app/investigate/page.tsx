@@ -140,7 +140,10 @@ export function InvestigateDashboard() {
                     <Banknote className="w-4 h-4 text-emerald-500" />
                     Total Suspect Value
                  </p>
-                 <p className="text-3xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]">
+                 <p 
+                   className="text-2xl xl:text-3xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)] truncate"
+                   title={data?.summary?.totalValueUsd != null ? `$${data.summary.totalValueUsd.toLocaleString()}` : '$Unknown'}
+                 >
                    {data?.summary?.totalValueUsd != null ? `$${data.summary.totalValueUsd.toLocaleString()}` : '$Unknown'}
                  </p>
               </div>
@@ -150,7 +153,7 @@ export function InvestigateDashboard() {
                     <Activity className="w-4 h-4 text-amber-500" />
                     Transactions Parsed
                  </p>
-                 <p className="text-3xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+                 <p className="text-2xl xl:text-3xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)] truncate">
                    {data?.summary?.txCount ?? 0}
                  </p>
               </div>
