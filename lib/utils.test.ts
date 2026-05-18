@@ -39,4 +39,9 @@ describe('formatCompactCurrency utility', () => {
   it('should handle zero correctly', () => {
     expect(formatCompactCurrency(0)).toBe('$0');
   });
+
+  it('should handle undefined or null correctly', () => {
+    expect(formatCompactCurrency(undefined as unknown as number)).toBe('$0');
+    expect(formatCompactCurrency(null as unknown as number)).toBe('$0');
+  });
 });
