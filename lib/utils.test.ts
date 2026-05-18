@@ -1,4 +1,4 @@
-import { cn } from './utils';
+import { cn, formatCompactCurrency } from './utils';
 
 describe('cn utility', () => {
   it('should join class names', () => {
@@ -16,5 +16,27 @@ describe('cn utility', () => {
 
   it('should handle empty or undefined inputs', () => {
     expect(cn('', undefined, null, 'class1')).toBe('class1');
+  });
+});
+
+describe('formatCompactCurrency utility', () => {
+  it('should format small numbers correctly', () => {
+    expect(formatCompactCurrency(150)).toBe('$150');
+  });
+
+  it('should format thousands correctly', () => {
+    expect(formatCompactCurrency(3500)).toBe('$3.5K');
+  });
+
+  it('should format millions correctly', () => {
+    expect(formatCompactCurrency(1250000)).toBe('$1.3M');
+  });
+
+  it('should format billions correctly', () => {
+    expect(formatCompactCurrency(4500000000)).toBe('$4.5B');
+  });
+
+  it('should handle zero correctly', () => {
+    expect(formatCompactCurrency(0)).toBe('$0');
   });
 });

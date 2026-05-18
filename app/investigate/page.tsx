@@ -9,6 +9,7 @@ import { FundFlowDiagram } from '@/components/FundFlowDiagram';
 import { ExhibitVerificationPanel } from '@/components/ExhibitVerificationPanel';
 import { LegalSection } from '@/lib/pdf-generator';
 import { Transaction } from '@/lib/tx-classifier';
+import { formatCompactCurrency } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function InvestigateDashboard() {
@@ -134,28 +135,39 @@ export function InvestigateDashboard() {
            </div>
            
            <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="bg-linear-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
-                 <div className="absolute -right-4 -top-4 w-20 h-20 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-colors"></div>
-                 <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                    <Banknote className="w-4 h-4 text-emerald-500" />
-                    Total Suspect Value
-                 </p>
-                 <p 
-                   className="text-2xl xl:text-3xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)] truncate"
-                   title={data?.summary?.totalValueUsd != null ? `$${data.summary.totalValueUsd.toLocaleString()}` : '$Unknown'}
-                 >
-                   {data?.summary?.totalValueUsd != null ? `$${data.summary.totalValueUsd.toLocaleString()}` : '$Unknown'}
-                 </p>
+              <div className="bg-zinc-900 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
+                 {/* Subtle grid background */}
+                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-50"></div>
+                 {/* Glow effect */}
+                 <div className="absolute -right-10 -top-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-colors"></div>
+                 
+                 <div className="relative z-10">
+                   <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
+                      <Banknote className="w-4 h-4 text-emerald-500" />
+                      Total Suspect Value
+                   </p>
+                   <p 
+                     className="text-3xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]"
+                     title={data?.summary?.totalValueUsd != null ? `$${data.summary.totalValueUsd.toLocaleString()}` : '$Unknown'}
+                   >
+                     {data?.summary?.totalValueUsd != null ? formatCompactCurrency(data.summary.totalValueUsd) : '$Unknown'}
+                   </p>
+                 </div>
               </div>
-              <div className="bg-linear-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
-                 <div className="absolute -right-4 -top-4 w-20 h-20 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-colors"></div>
-                 <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-amber-500" />
-                    Transactions Parsed
-                 </p>
-                 <p className="text-2xl xl:text-3xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)] truncate">
-                   {data?.summary?.txCount ?? 0}
-                 </p>
+
+              <div className="bg-zinc-900 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
+                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-50"></div>
+                 <div className="absolute -right-10 -top-10 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-colors"></div>
+                 
+                 <div className="relative z-10">
+                   <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
+                      <Activity className="w-4 h-4 text-amber-500" />
+                      Transactions Parsed
+                   </p>
+                   <p className="text-3xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+                     {data?.summary?.txCount ?? 0}
+                   </p>
+                 </div>
               </div>
            </div>
         </motion.div>

@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Banknote, Activity, ChevronRight, ChevronLeft, Target } from 'lucide-react';
+import { ShieldCheck, ChevronRight, ChevronLeft, Target } from 'lucide-react';
 import { Transaction } from '@/lib/tx-classifier';
+import { formatCompactCurrency } from '@/lib/utils';
 
 interface FundFlowDiagramProps {
   transactions: Transaction[];
@@ -82,32 +83,6 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
               </div>
             </div>
           </div>
-
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            <div className="bg-linear-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
-              <div className="absolute -right-4 -top-4 w-20 h-20 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-colors" />
-              <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                <Banknote className="w-4 h-4 text-emerald-500" />
-                Total Suspect Value
-              </p>
-              <p 
-                className="text-xl md:text-2xl text-emerald-400 font-mono font-bold drop-shadow-[0_0_10px_rgba(52,211,153,0.4)] truncate"
-                title={`$${Math.floor(transactions.reduce((acc, tx) => acc + parseFloat(tx.value) * 3000, 0)).toLocaleString()}`}
-              >
-                ${Math.floor(transactions.reduce((acc, tx) => acc + parseFloat(tx.value) * 3000, 0)).toLocaleString()}
-              </p>
-            </div>
-            <div className="bg-linear-to-br from-zinc-900 to-zinc-950 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
-              <div className="absolute -right-4 -top-4 w-20 h-20 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-colors" />
-              <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-3 flex items-center gap-2">
-                <Activity className="w-4 h-4 text-amber-500" />
-                Transactions Parsed
-              </p>
-              <p className="text-xl md:text-2xl text-amber-500 font-mono font-bold drop-shadow-[0_0_10px_rgba(245,158,11,0.4)] truncate">
-                {transactions.length}
-              </p>
-            </div>
-          </div>
         </div>
 
         <div className="flex-1 overflow-x-auto pt-4 pb-20">
@@ -145,16 +120,22 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
                   >
                     {/* Connecting Line */}
                     <div className="flex flex-col items-center justify-center w-32 relative">
-                      <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-zinc-800 -translate-y-1/2 z-0 overflow-hidden">
+                      <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-zinc-800/80 -translate-y-1/2 z-0 overflow-hidden rounded-full">
                         <motion.div 
-                          initial={{ left: "-100%" }}
-                          animate={{ left: "100%" }}
+                          initial={{ left: "-10%" }}
+                          animate={{ left: "110%" }}
                           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                          className="absolute top-0 bottom-0 w-1/2 bg-linear-to-r from-transparent via-amber-500 to-transparent"
+                          className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(245,158,11,1)]"
+                        />
+                        <motion.div 
+                          initial={{ left: "-10%" }}
+                          animate={{ left: "110%" }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.75 }}
+                          className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,1)]"
                         />
                       </div>
                       <div className="bg-zinc-950 px-3 py-1 border border-zinc-800 rounded-full z-10 flex flex-col items-center">
-                        <span className="text-[10px] text-emerald-400 font-mono font-bold">${Math.floor(parseFloat(tx.value) * 3000).toLocaleString()}</span>
+                        <span className="text-[10px] text-emerald-400 font-mono font-bold">{formatCompactCurrency(parseFloat(tx.value) * 3000)}</span>
                         <span className="text-[9px] text-zinc-500 font-mono">{parseFloat(tx.value).toFixed(2)} ETH</span>
                       </div>
                     </div>
@@ -177,27 +158,38 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
           </motion.div>
         </div>
 
-        {/* Navigation Controls */}
-        <div className="absolute bottom-6 right-8 flex items-center gap-3">
-            <button 
-                onClick={() => setFocusedIndex(Math.max(0, focusedIndex - 1))}
-                className="p-3 bg-zinc-900 border border-white/5 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all disabled:opacity-30"
-                disabled={focusedIndex === 0}
-                aria-label="Previous node"
-            >
-                <ChevronLeft className="w-5 h-5" />
-            </button>
-            <div className="px-4 py-2 bg-zinc-950 border border-zinc-800 rounded-xl font-mono text-xs text-zinc-500">
-                <span className="text-amber-500">{focusedIndex + 1}</span> / {transactions.length + 1}
+        {/* Navigation Scrubber */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 w-full max-w-md px-8 bg-zinc-950/80 backdrop-blur-md py-4 rounded-3xl border border-white/5 shadow-2xl">
+            <div className="flex items-center justify-between w-full gap-4">
+                <button 
+                    onClick={() => setFocusedIndex(Math.max(0, focusedIndex - 1))}
+                    className="p-2 rounded-full text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all disabled:opacity-30"
+                    disabled={focusedIndex === 0}
+                    aria-label="Previous node"
+                >
+                    <ChevronLeft className="w-5 h-5" />
+                </button>
+
+                <div className="flex-1 relative h-1.5 bg-zinc-900 rounded-full overflow-hidden border border-white/5">
+                    <motion.div 
+                        className="absolute top-0 bottom-0 left-0 bg-amber-500"
+                        animate={{ width: `${((focusedIndex + 1) / (transactions.length + 1)) * 100}%` }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                </div>
+
+                <button 
+                    onClick={() => setFocusedIndex(Math.min(transactions.length, focusedIndex + 1))}
+                    className="p-2 rounded-full text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all disabled:opacity-30"
+                    disabled={focusedIndex === transactions.length}
+                    aria-label="Next node"
+                >
+                    <ChevronRight className="w-5 h-5" />
+                </button>
             </div>
-            <button 
-                onClick={() => setFocusedIndex(Math.min(transactions.length, focusedIndex + 1))}
-                className="p-3 bg-zinc-900 border border-white/5 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all disabled:opacity-30"
-                disabled={focusedIndex === transactions.length}
-                aria-label="Next node"
-            >
-                <ChevronRight className="w-5 h-5" />
-            </button>
+            <p className="text-[10px] text-zinc-500 font-mono tracking-widest uppercase">
+               Node {focusedIndex + 1} of {transactions.length + 1}
+            </p>
         </div>
       </div>
     </div>
