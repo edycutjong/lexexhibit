@@ -61,12 +61,29 @@ When a divorce attorney suspects a spouse is hiding assets in DeFi liquidity poo
 | **AI** | OpenAI GPT-4o (Structured Output) |
 | **PDF** | jsPDF 4.2 (Court formatting) |
 | **Icons** | Lucide React |
-| **Cache** | Supabase (optional caching layer — pre-cached demo data ships in `/data`) |
+| **Cache** | Supabase (wallet scan cache + affidavit audit log) |
 | **Language** | TypeScript 5 |
 
-<div align="center">
-  <img src="docs/architecture.png" alt="LexExhibit Architecture" width="100%">
-</div>
+**Data flow:**
+```
+Wallet Address
+  ↓
+[Demo wallet?] ──────────────────────── Pre-cached JSON (instant)
+  ↓ else
+[Supabase cache hit?] ───────────────── Cached trace < 100ms
+  ↓ else
+Alchemy SDK getAssetTransfers()
+  → classify by known contract addresses (Uniswap, Tornado, bridges)
+  → detectSuspiciousPatterns (mixer, dispersal, cross-chain hop)
+  → write to Supabase cached_traces (7-day TTL)
+  ↓
+legal-formatter → OFAC-aware affidavit prose per transaction
+  ↓
+jsPDF → pleading paper PDF + fund-flow diagram page
+  → write audit entry to Supabase generated_reports
+  ↓
+Court-Ready PDF + Exhibit Verification Panel
+```
 
 ---
 
