@@ -85,7 +85,7 @@ export const FundFlowDiagram: React.FC<FundFlowDiagramProps> = ({ transactions }
           </div>
         </div>
 
-        <div className="flex-1 overflow-x-auto pt-4 pb-20">
+        <div className="flex-1 overflow-x-auto pt-4 pb-36">
           <motion.div 
             variants={containerVariants}
             initial="hidden"

@@ -1,4 +1,3 @@
-import { Alchemy, Network, AssetTransfersCategory, SortingOrder } from 'alchemy-sdk';
 import { Transaction, classifyTransaction } from './tx-classifier';
 import { detectSuspiciousPatterns } from './suspicious-detector';
 
@@ -37,29 +36,56 @@ function resolveCategory(to: string): Transaction['category'] {
   return KNOWN_CONTRACTS[to.toLowerCase()] ?? classifyTransaction({ to });
 }
 
+interface AlchemyTransfer {
+  blockNum: string;
+  hash: string;
+  from: string;
+  to: string | null;
+  value: number | null;
+  asset: string | null;
+  category: string;
+  metadata: {
+    blockTimestamp: string;
+  };
+}
+
 export async function fetchWalletTransactions(address: string): Promise<{
   transactions: Transaction[];
   totalValueUsd: number;
 }> {
-  const alchemy = new Alchemy({
-    apiKey: process.env.ALCHEMY_API_KEY,
-    network: Network.ETH_MAINNET,
+  const apiKey = process.env.ALCHEMY_API_KEY;
+  if (!apiKey) {
+    throw new Error('ALCHEMY_API_KEY is missing');
+  }
+
+  // Fetch outbound transfers via native fetch to avoid alchemy-sdk vulnerabilities
+  const response = await fetch(`https://eth-mainnet.g.alchemy.com/v2/${apiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      id: 1,
+      jsonrpc: '2.0',
+      method: 'alchemy_getAssetTransfers',
+      params: [
+        {
+          fromAddress: address,
+          category: ['external', 'internal', 'erc20'],
+          withMetadata: true,
+          maxCount: '0x64', // 100 in hex
+          order: 'asc',
+        },
+      ],
+    }),
   });
 
-  // Fetch outbound transfers with metadata (blockTimestamp) — chronological order
-  const result = await alchemy.core.getAssetTransfers({
-    fromAddress: address,
-    category: [
-      AssetTransfersCategory.EXTERNAL,
-      AssetTransfersCategory.INTERNAL,
-      AssetTransfersCategory.ERC20,
-    ],
-    withMetadata: true,
-    maxCount: 100,
-    order: SortingOrder.ASCENDING,
-  });
+  if (!response.ok) {
+    throw new Error(`Alchemy API error: ${response.status} ${response.statusText}`);
+  }
 
-  const transactions: Transaction[] = result.transfers.map(t => {
+  const data = await response.json();
+  const transfers: AlchemyTransfer[] = data.result?.transfers || [];
+
+  const transactions: Transaction[] = transfers.map(t => {
     const isEth = !t.asset || t.asset === 'ETH';
     const rawValue = t.value?.toString() ?? '0';
     const to = t.to ?? '';
@@ -75,7 +101,7 @@ export async function fetchWalletTransactions(address: string): Promise<{
       method: undefined,
       blockNumber: parseInt(t.blockNum, 16),
       timestamp,
-      isInternal: t.category === AssetTransfersCategory.INTERNAL,
+      isInternal: t.category === 'internal',
       category: resolveCategory(to),
       suspiciousFlags: [],
     };
