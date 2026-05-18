@@ -58,7 +58,7 @@ export function InvestigateDashboard() {
       const fetchPromise = fetch('/api/generate-affidavit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transactions: data?.transactions || [] })
+        body: JSON.stringify({ transactions: data?.transactions || [], wallet })
       });
 
       // 1. Tracing State (0-1.5s)
