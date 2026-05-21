@@ -137,7 +137,7 @@ export function InvestigateDashboard() {
            <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="bg-zinc-900 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
                  {/* Subtle grid background */}
-                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-50"></div>
+                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[16px_16px] mask-[linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-50"></div>
                  {/* Glow effect */}
                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-colors"></div>
                  
@@ -156,7 +156,7 @@ export function InvestigateDashboard() {
               </div>
 
               <div className="bg-zinc-900 border border-white/5 rounded-xl p-5 shadow-xl relative overflow-hidden group">
-                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-50"></div>
+                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-size-[16px_16px] mask-[linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-50"></div>
                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-colors"></div>
                  
                  <div className="relative z-10">
